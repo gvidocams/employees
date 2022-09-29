@@ -1,4 +1,4 @@
-﻿namespace Employee
+﻿namespace IfEmployee
 {
     public class Employee
     {
