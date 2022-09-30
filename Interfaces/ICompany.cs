@@ -12,7 +12,7 @@ namespace IfEmployee
         /// <summary>
         /// List of the employees that are working for the company.
         /// </summary>
-        Employee[] Employees { get; }
+          Employee[] Employees { get; }
 
         /// <summary>
         /// Adds new employee from the given date. Employee Id must be unique.

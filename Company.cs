@@ -1,20 +1,38 @@
 ﻿using System;
+using EmployeeExceptions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IfEmployee
 {
     public class Company : ICompany
     {
-        public string Name => throw new NotImplementedException();
+        public string Name { get; }
 
-        public Employee[] Employees => throw new NotImplementedException();
+        public Employee[] Employees 
+        { 
+            get => _employeeList.ToArray(); 
+        }
+
+        private List<Employee> _employeeList;
+
+        private List<Contract> _contractList;
+
+        public Company(string name, List<Employee> employees, List<Contract> contracts)
+        {
+            Name = name;
+            _employeeList = employees;
+            _contractList = contracts;
+        }
 
         public void AddEmployee(Employee employee, DateTime contractStartDate)
         {
-            throw new NotImplementedException();
+            if (_employeeList.FirstOrDefault(e => e.Id == employee.Id) != null)
+            {
+                throw new DuplicateIdException(employee.Id);
+            }
+
+            _employeeList.Add(employee);
         }
 
         public EmployeeMonthlyReport[] GetMonthlyReport(DateTime periodStartDate, DateTime periodEndDate)
@@ -28,7 +46,7 @@ namespace IfEmployee
         }
 
         public void ReportHours(int employeeId, DateTime dateAndTime, int hours, int minutes)
-        {
+        {   
             throw new NotImplementedException();
         }
     }
